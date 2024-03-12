@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className}>
         <Nav />
-        {children}
+        <main className="p-8">{children}</main>
       </body>
     </html>
   );
