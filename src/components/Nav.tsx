@@ -3,8 +3,8 @@ import React from "react";
 
 export const Nav = () => {
   return (
-    <header>
-      <nav>
+    <header className="p-8 shadow">
+      <nav className="flex items-center justify-center gap-4">
         <Link href="">home</Link>
         <Link href="/about">about</Link>
         <Link href="/report">report</Link>
