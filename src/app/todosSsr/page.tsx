@@ -7,8 +7,6 @@ const todosSsrPage = async () => {
   });
   const todos = await response.json();
 
-  console.log(todos);
-
   return (
     <ul>
       {todos?.map((todo: Todos) => {
