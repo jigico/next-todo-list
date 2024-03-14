@@ -26,6 +26,22 @@ export const TodoList = () => {
     }
   });
 
+  const patchMutation = useMutation({
+    mutationFn: async ({ id, isDone }: { id: string; isDone: boolean }) => {
+      const response = await fetch(`/api/todos/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ isDone })
+      });
+      await response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    }
+  });
+
   //todo 삭제
   const handleDeleteTodo = (id: string) => {
     if (window.confirm("정말 삭제할까요?")) {
@@ -34,6 +50,11 @@ export const TodoList = () => {
     } else {
       alert("삭제를 취소했습니다.");
     }
+  };
+
+  //todo 완료 상태 toggle
+  const handleToggleIsDone = (id: string, isDone: boolean) => {
+    patchMutation.mutate({ id, isDone: !isDone });
   };
 
   if (isError) {
@@ -52,7 +73,13 @@ export const TodoList = () => {
             <strong>{todo.title}</strong>
             <p>{todo.contents}</p>
             <div>
-              <button>{todo.isDone ? "취소" : "완료"}</button>
+              <button
+                onClick={() => {
+                  handleToggleIsDone(todo.id, todo.isDone);
+                }}
+              >
+                {todo.isDone ? "취소" : "완료"}
+              </button>
               <button onClick={() => handleDeleteTodo(todo.id)}>삭제</button>
             </div>
           </li>
