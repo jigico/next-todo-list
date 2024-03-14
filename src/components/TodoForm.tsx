@@ -1,11 +1,12 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useRef } from "react";
 
 export const TodoForm = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentsRef = useRef<HTMLInputElement>(null);
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: async (newTodo: { title: string; contents: string }) => {
@@ -17,6 +18,9 @@ export const TodoForm = () => {
         body: JSON.stringify(newTodo)
       });
       return await response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
     }
   });
 
