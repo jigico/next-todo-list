@@ -2,7 +2,7 @@ import { Todos } from "@/types/todos";
 import React from "react";
 
 const todosSsrPage = async () => {
-  const response = await fetch("http://localhost:3000/api/todos", {
+  const response = await fetch("http://localhost:4000/todos", {
     cache: "no-cache"
   });
   const todos = await response.json();
