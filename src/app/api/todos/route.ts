@@ -12,13 +12,26 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { title, content } = await request.json();
+  const { title, contents } = await request.json();
+
+  if (!title) {
+    return new Response("title is not found", {
+      status: 404
+    });
+  }
+
+  if (!contents) {
+    return new Response("contents is not found", {
+      status: 404
+    });
+  }
+
   const response = await fetch("http://localhost:4000/todos", {
     method: "post",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ title, content, isDone: false })
+    body: JSON.stringify({ title, contents, isDone: false })
   });
 
   const todo = await response.json();
