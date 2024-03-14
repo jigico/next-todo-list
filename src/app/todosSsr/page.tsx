@@ -1,4 +1,5 @@
 import { Todos } from "@/types/todos";
+import Link from "next/link";
 import React from "react";
 
 const todosSsrPage = async () => {
@@ -8,17 +9,20 @@ const todosSsrPage = async () => {
   const todos = await response.json();
 
   return (
-    <ul>
-      {todos?.map((todo: Todos) => {
-        return (
-          <li key={todo.id}>
-            {todo.title}
-            <p>{todo.contents}</p>
-            <p>{todo.isDone ? "처리완료" : "처리중"}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <Link href="/report">할일정보통계 보러가기</Link>
+      <ul>
+        {todos?.map((todo: Todos) => {
+          return (
+            <li key={todo.id}>
+              {todo.title}
+              <p>{todo.contents}</p>
+              <p>{todo.isDone ? "처리완료" : "처리중"}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 };
 
