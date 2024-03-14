@@ -53,10 +53,12 @@ export const TodoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="title" ref={titleRef} />
-      <input type="text" name="contents" ref={contentsRef} />
-      <button>추가</button>
+    <form onSubmit={handleSubmit} className="flex items-center justify-center">
+      <label htmlFor="title">제목</label>
+      <input type="text" id="title" name="title" ref={titleRef} className="mx-2 border border-slate-300 rounded indent-1.5" placeholder="제목을 입력해주세요." />
+      <label htmlFor="title">내용</label>
+      <input type="text" content="contents" name="contents" ref={contentsRef} className="mx-2 border border-slate-300 rounded indent-1.5" placeholder="내용을 입력해주세요." />
+      <button className="p-1 rounded border-transparent bg-slate-800 hover:bg-slate-950 text-white text-sm">추가</button>
     </form>
   );
 };
