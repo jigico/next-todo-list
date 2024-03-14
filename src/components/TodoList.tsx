@@ -4,7 +4,7 @@ import type { Todos } from "@/types/todos";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 
-export const TodoList = () => {
+export const TodoList = ({ isActive }: { isActive: boolean }) => {
   const { data, isLoading, isError } = useQuery<Todos[]>({
     queryFn: async () => {
       const response = await fetch("/api/todos");
@@ -66,25 +66,30 @@ export const TodoList = () => {
   }
 
   return (
-    <ul>
-      {data?.map((todo: Todos) => {
-        return (
-          <li key={todo.id}>
-            <strong>{todo.title}</strong>
-            <p>{todo.contents}</p>
-            <div>
-              <button
-                onClick={() => {
-                  handleToggleIsDone(todo.id, todo.isDone);
-                }}
-              >
-                {todo.isDone ? "취소" : "완료"}
-              </button>
-              <button onClick={() => handleDeleteTodo(todo.id)}>삭제</button>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h2>{isActive ? "🎉 완료한 일" : "😀 해야할 일"}</h2>
+      <ul>
+        {data
+          ?.filter((todo: Todos) => todo.isDone === isActive)
+          .map((todo: Todos) => {
+            return (
+              <li key={todo.id}>
+                <strong>{todo.title}</strong>
+                <p>{todo.contents}</p>
+                <div>
+                  <button
+                    onClick={() => {
+                      handleToggleIsDone(todo.id, todo.isDone);
+                    }}
+                  >
+                    {todo.isDone ? "취소" : "완료"}
+                  </button>
+                  <button onClick={() => handleDeleteTodo(todo.id)}>삭제</button>
+                </div>
+              </li>
+            );
+          })}
+      </ul>
+    </>
   );
 };
