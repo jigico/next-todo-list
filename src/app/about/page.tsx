@@ -1,4 +1,5 @@
 import type { CompanyInfo } from "@/types/CompanyInfo";
+import Image from "next/image";
 import React from "react";
 
 const AboutPage = async () => {
@@ -9,7 +10,9 @@ const AboutPage = async () => {
     <ul className="text-center">
       <li>회사명: {companyInfo?.name}</li>
       <li>회사 소개: {companyInfo?.description}</li>
-      <li>회사 홈페이지 주소: {companyInfo?.url}</li>
+      <li>
+        <Image src={companyInfo?.url} width={430} height={430} alt="이미지" />
+      </li>
     </ul>
   );
 };

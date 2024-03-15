@@ -1,0 +1,45 @@
+{
+  "companyInfo": {
+    "name": "주식회사 로컬 컴퍼니",
+    "description": "우리 회사는 로컬 컴퍼니 입니다~",
+    "url": "https://img1.daumcdn.net/thumb/C428x428/?scode=mtistory2&fname=https%3A%2F%2Ftistory4.daumcdn.net%2Ftistory%2F6779476%2Fattach%2F4bc4f408dd534eaca74b5323ab56e9dc"
+  },
+  "todos": [
+    {
+      "id": "0517",
+      "title": "과제",
+      "contents": "투두리스트 완성하기",
+      "isDone": true
+    },
+    {
+      "id": "eb97",
+      "title": "초코우유 사오기",
+      "contents": "사오기",
+      "isDone": false
+    },
+    {
+      "id": "d886",
+      "title": "ee",
+      "contents": "ee",
+      "isDone": false
+    },
+    {
+      "id": "25dc",
+      "title": "rr",
+      "contents": "rr",
+      "isDone": false
+    },
+    {
+      "id": "fff2",
+      "title": "ff",
+      "contents": "ff",
+      "isDone": true
+    },
+    {
+      "id": "0945",
+      "title": "test",
+      "contents": "test",
+      "isDone": false
+    }
+  ]
+}
