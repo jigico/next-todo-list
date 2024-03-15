@@ -6,7 +6,7 @@ const AboutPage = async () => {
   const companyInfo: CompanyInfo = await response.json();
 
   return (
-    <ul>
+    <ul className="text-center">
       <li>회사명: {companyInfo?.name}</li>
       <li>회사 소개: {companyInfo?.description}</li>
       <li>회사 홈페이지 주소: {companyInfo?.url}</li>
