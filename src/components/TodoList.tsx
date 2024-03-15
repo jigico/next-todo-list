@@ -62,34 +62,42 @@ export const TodoList = ({ isActive }: { isActive: boolean }) => {
   }
 
   if (isLoading) {
-    return <div>로딩중</div>;
+    return (
+      <div className="m-4 flex flex-col gap-4 w-full">
+        <div className="skeleton h-10 w-full"></div>
+        <div className="skeleton h-40 w-full"></div>
+      </div>
+    );
   }
 
   return (
-    <>
-      <h2>{isActive ? "🎉 완료한 일" : "😀 해야할 일"}</h2>
-      <ul>
+    <div className="m-4">
+      <h2 className="mb-4 text-lg font-bold">{isActive ? "🎉 완료한 일" : "😀 해야할 일"}</h2>
+      <ul className="mb-8 grid grid-cols-4 gap-4">
         {data
           ?.filter((todo: Todos) => todo.isDone === isActive)
           .map((todo: Todos) => {
             return (
-              <li key={todo.id}>
+              <li key={todo.id} className="shadow p-4 rounded">
                 <strong>{todo.title}</strong>
                 <p>{todo.contents}</p>
-                <div>
+                <div className="mt-2 flex gap-2">
                   <button
+                    className="btn btn-outline btn-success btn-sm w-1/2"
                     onClick={() => {
                       handleToggleIsDone(todo.id, todo.isDone);
                     }}
                   >
                     {todo.isDone ? "취소" : "완료"}
                   </button>
-                  <button onClick={() => handleDeleteTodo(todo.id)}>삭제</button>
+                  <button className="btn btn-outline btn-error btn-sm w-1/2" onClick={() => handleDeleteTodo(todo.id)}>
+                    삭제
+                  </button>
                 </div>
               </li>
             );
           })}
       </ul>
-    </>
+    </div>
   );
 };
