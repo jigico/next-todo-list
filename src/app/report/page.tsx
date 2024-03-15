@@ -2,7 +2,11 @@ import type { Todos } from "@/types/todos";
 import React from "react";
 
 const ReportPage = async () => {
-  const response = await fetch("http://localhost:4000/todos");
+  const response = await fetch("http://localhost:4000/todos", {
+    next: {
+      revalidate: 5
+    }
+  });
   const todos: Todos[] = await response.json();
 
   return (
